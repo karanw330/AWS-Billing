@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -32,15 +32,28 @@ build/
 ### VS Code ###
 .vscode/
 
+### Local AI & Developer Tools ###
+.cursor/
+.impeccable/
+.gemini/
+.claude/
+
 # OS
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Logs & JVM Dumps
+# Temporary files & Logs & JVM Dumps
 *.log
 *.hprof
 hs_err_pid*
+*.tmp
+*.swp
+*.bak
 
 # Environment Secrets
 .env
+.env.*
 application-local.*
+application-dev.*

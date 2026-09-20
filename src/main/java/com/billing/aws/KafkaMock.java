@@ -22,7 +22,7 @@ public class KafkaMock {
             """
         {"service_code": "AmazonDynamoDB", "sku": "DDBWR2019X", "operation": "WriteRequestUnits", "usage_type": "CommittedWCU", "unit": "units", "tenant_id": "tenant_mid_13", "event_id": "evt_1785869478732_34544_26717", "usage_amount": 183, "timestamp": 1785869478732}""",
             """
-        {"service_code": "AmazonDynamoDB", "sku": "DDBWR2019X", "operation": "WriteRequestUnits", "usage_type": "CommittedWCU", "unit": "units", "tenant_id": "tenant_dev_15", "event_id": "evt_1785869478732_34544_26718", "usage_amount": 75, "timestamp": 1785869478732}""",
+        {"service_code": "AmazonDynamoDB", "sku": "DDBWR2019X", "operation": "WriteRequestUnits", "usage_type": "CommittedWCU", "unit": "units", "tenant_id": "tenant_dev_15", "event_id": "evt_1785869478732_34544_26717", "usage_amount": 75, "timestamp": 1785869478732}""",
             """
         {"service_code": "AmazonDynamoDB", "sku": "DDBWR2019X", "operation": "WriteRequestUnits", "usage_type": "CommittedWCU", "unit": "units", "tenant_id": "tenant_ent_04", "event_id": "evt_1785869478732_34544_26719", "usage_amount": 2430, "timestamp": 1785869478732}""",
             """
@@ -37,7 +37,7 @@ public class KafkaMock {
 
     public void sendPayloads() throws Exception {
         for (String payload : arr) {
-            RawUsageLog log = eventParser.Parse(payload);
+            RawUsageLogDTO log = eventParser.Parse(payload);
             eventParser.output(log);
         }
     }

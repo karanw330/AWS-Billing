@@ -11,5 +11,7 @@ public class AwsApplication {
         ApplicationContext context = SpringApplication.run(AwsApplication.class, args);
         KafkaMock producer = context.getBean(KafkaMock.class);
         producer.sendPayloads();
+        LogProcessor logProcessor = context.getBean(LogProcessor.class);
+        logProcessor.printUsageLog();
     }
 }

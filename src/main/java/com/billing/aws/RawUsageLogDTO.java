@@ -1,13 +1,8 @@
 package com.billing.aws;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 //record is an in built DTO(Data Transfer Object)- A Java record used as a DTO is functionally identical to a Pydantic BaseModel in Python.
 // 1. The blueprint/schema class (The DTO)
-@Component
-@Scope("prototype")
-public record RawUsageLog(
+public record RawUsageLogDTO(
         String service_code,
         String sku,
         String operation,
