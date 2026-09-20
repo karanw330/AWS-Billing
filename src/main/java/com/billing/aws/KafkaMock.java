@@ -37,7 +37,7 @@ public class KafkaMock {
 
     public void sendPayloads() throws Exception {
         for (String payload : arr) {
-            RawUsageLogDTO log = eventParser.Parse(payload);
+            RawUsageLogDTO log = eventParser.parse(payload);
             eventParser.output(log);
         }
     }

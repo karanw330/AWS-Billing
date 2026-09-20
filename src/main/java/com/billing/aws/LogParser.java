@@ -17,17 +17,16 @@ public class LogParser {
         this.logProcessor = logProcessor;
     }
 
-    public RawUsageLogDTO Parse(String json) throws Exception {
+    public RawUsageLogDTO parse(String json) throws Exception {
         return mapper.readValue(json, RawUsageLogDTO.class);
     }
 
     public void output(RawUsageLogDTO log) {
-        if(idempotencyManager.CheckLog(log)){
-            System.out.println("new event: "+ log.event_id());
+        if (idempotencyManager.checkLog(log)) {
+            System.out.println("new event: " + log.event_id());
+            logProcessor.process(log);
+        } else {
+            System.out.println("duplicate event: " + log.event_id());
         }
-        else{
-            System.out.println("duplicate event: "+ log.event_id());
-        }
-        logProcessor.process(log);
     }
 }

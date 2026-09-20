@@ -6,9 +6,11 @@ import java.util.Map;
 @Service
 public class LogProcessor {
 
+    //custom registry
     private final Map<String, AWSService> registry;
 
     public LogProcessor(Map<String, AWSService> registry) {
+        //spring handles DI where the Key name is the bean name and value is the bean itself
         this.registry = registry;
     }
     public void process(RawUsageLogDTO log) {
