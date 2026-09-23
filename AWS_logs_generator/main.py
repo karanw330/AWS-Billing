@@ -94,8 +94,11 @@ TENANT_PROFILES = {
 
 tenant_list = list(TENANT_PROFILES.keys())
 
-conf = {'bootstrap.servers': 'localhost:9092',
-        'client.id': socket.gethostname()}
+conf = {
+        'bootstrap.servers': '[::1]:9092',
+        'client.id': socket.gethostname(),
+        'broker.address.family': 'v6'
+        }
 
 producer = Producer(conf)
 
