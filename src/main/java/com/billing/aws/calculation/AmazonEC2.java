@@ -1,6 +1,8 @@
 package com.billing.aws.calculation;
 
 import com.billing.aws.RawUsageLogDTO;
+import org.springframework.context.event.ContextClosedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,6 +27,11 @@ public class AmazonEC2 implements AWSService {
     @Override
     public void printResourceUsage() {
         System.out.println(usageLogMap);
+    }
+
+    @EventListener
+    public void handleContextClose(ContextClosedEvent event) {
+        printResourceUsage();
     }
 }
 

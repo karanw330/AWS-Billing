@@ -6,9 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class BillingLogListener {
 
-    @KafkaListener(topics = "project", groupId = "aws-processor")
-    public void listen(RawUsageLogDTO message) {
-        System.out.println(message);
+    private final LogParser parser;
+
+    BillingLogListener(LogParser parser) {
+        this.parser = parser;
     }
 
+    @KafkaListener(topics = "project", groupId = "aws-processor")
+    public void listen(RawUsageLogDTO message) {
+        parser.output(message);
+    }
 }
