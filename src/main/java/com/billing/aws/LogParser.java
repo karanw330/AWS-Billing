@@ -25,6 +25,7 @@ public class LogParser {
         if (idempotencyManager.checkLog(log)) {
             System.out.println("new event: " + log.event_id());
             logProcessor.process(log);
+            idempotencyManager.insertLog(log);
         }
         else {
             System.out.println("duplicate event: " + log.event_id());
