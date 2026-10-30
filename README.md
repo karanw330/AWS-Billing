@@ -55,7 +55,7 @@ Python Usage Generator
                      [Planned] Dashboard
 ```
 
-## Roadmap
+## Planned components for implementation 
 
 ### Core infrastructure
 - [ ] Redis-based idempotency with duplicate checks and recording only after successful processing
