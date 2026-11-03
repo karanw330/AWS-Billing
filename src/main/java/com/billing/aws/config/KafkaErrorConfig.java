@@ -33,7 +33,7 @@ public class KafkaErrorConfig {
 
         var dltRecoverer = new DeadLetterPublishingRecoverer(jsonTemplate);
 
-        // wrapper: skip deserialization failures, DLT everything else
+        // wrapper: skip deserialization failures, DLT everything else (this is called after all retries are exhausted)
         ConsumerRecordRecoverer recoverer = (record, ex) -> {
 
             if (isDeserializationFailure(ex)) {
@@ -44,18 +44,21 @@ public class KafkaErrorConfig {
                 return;   // returns normally → offset moves forward
             }
             System.out.println(
-                    "FAILED: " + record.topic()
-                            + "-" + record.partition()
-                            + "@" + record.offset()
+                    "FAILED: "
+                            + "@offset:" + record.offset()
                             + " | reason: " + ex.getMessage()
             );
+            System.out.println("Sending record to DLT");
             dltRecoverer.accept(record, ex);   // publish to project.DLT
         };
 
         var backoff = new ExponentialBackOffWithMaxRetries(3);
-        backoff.setInitialInterval(1000);
-        backoff.setMultiplier(2.0);
+        backoff.setInitialInterval(10);
+        backoff.setMultiplier(1.0);
+        //multiplier multiplies the waiting interval (ie 1->2->4 in total 7 seconds if multiplier is 2)
 
+
+        //DefaultErrorHandler already treats DeserializationException (along with MessageConversionException, ClassCastException and a few others) as non-retryable by default
         var handler = new DefaultErrorHandler(recoverer, backoff);
         handler.addNotRetryableExceptions(IllegalArgumentException.class);
         return handler;

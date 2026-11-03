@@ -1,15 +1,17 @@
 package com.billing.aws;
 
+import org.jspecify.annotations.NonNull;
+
 //record is an in built DTO(Data Transfer Object)- A Java record used as a DTO is functionally identical to a Pydantic BaseModel in Python.
 // 1. The blueprint/schema class (The DTO)
 public record RawUsageLogDTO(
-        String service_code,
-        String sku,
-        String operation,
-        String usage_type,
-        String unit,
-        String tenant_id,
-        String event_id,
-        long usage_amount,
-        long timestamp
+        @NonNull String service_code,
+        @NonNull String sku,
+        @NonNull String operation,
+        @NonNull String usage_type,
+        @NonNull String unit,
+        @NonNull String tenant_id,
+        @NonNull String event_id,
+        @NonNull long usage_amount,
+        @NonNull long timestamp
 ) {}

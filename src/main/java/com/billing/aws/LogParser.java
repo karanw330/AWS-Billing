@@ -1,6 +1,7 @@
 package com.billing.aws;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 //two public high level entities like classes cannot be there in one single file
 @Component
@@ -22,10 +23,11 @@ public class LogParser {
     }
 
     public void output(RawUsageLogDTO log) {
-        if (idempotencyManager.checkLog(log)) {
+        if (!idempotencyManager.isDuplicate(log)) {
             System.out.println("new event: " + log.event_id());
             logProcessor.process(log);
             idempotencyManager.insertLog(log);
+            System.out.println("new event inserted in db!");
         }
         else {
             System.out.println("duplicate event: " + log.event_id());

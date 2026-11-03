@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class IdempotencyManager {
     private final HashSet<String> events = new HashSet<>();
 
-    public boolean checkLog(RawUsageLogDTO log){
+    public boolean isDuplicate(RawUsageLogDTO log){
         return events.contains(log.event_id());
     }
 
