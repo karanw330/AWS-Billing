@@ -1,0 +1,22 @@
+.pageStack { display: grid; min-width: 0; gap: 16px; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+.overviewCharts { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(380px, 1fr); gap: 16px; }
+.twoColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.billingMetrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+.panelPad { padding: 0 18px 16px; }
+.breakdownRow { display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--subtle-line); min-height: 39px; font-size: 12px; }
+.breakdownTitle { font-weight: 600; }
+.badge { display: inline-flex; align-items: center; border-radius: 5px; padding: 3px 7px; color: var(--accent); background: var(--accent-wash); font-size: 11px; font-weight: 650; }
+.badge[data-tier='Mid-size'] { color: var(--updated); background: var(--success-wash); }
+.badge[data-tier='Development'] { color: var(--muted); background: var(--elevated); }
+.metricsNotice { padding: 9px 13px; border: 1px solid var(--amber-border); background: var(--amber-wash); color: var(--amber); border-radius: 8px; font-size: 12px; display: flex; align-items: center; gap: 8px; }
+.tenantName { display: grid; gap: 3px; }
+.tenantName code { font-size: 10px; }
+.drawerHeading { font-size: 20px; letter-spacing: -.03em; line-height: 1.2; }
+@media (max-width: 1100px) and (min-width: 921px) { .overviewCharts { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 810px) { .overviewCharts { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 650px) {
+  .pageStack { gap: 13px; }
+  .metrics, .billingMetrics { gap: 9px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .twoColumns, .overviewCharts { gap: 13px; grid-template-columns: minmax(0, 1fr); }
+}

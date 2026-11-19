@@ -1,0 +1,24 @@
+.chartBody { padding: 3px 13px 13px 7px; min-width: 0; }
+.donutBody { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 15px; padding: 8px 18px 17px; min-height: 229px; }
+.ring { position: relative; width: 120px; height: 120px; }
+.ringText { pointer-events: none; position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; line-height: 1.2; }
+.ringText strong { font-size: 16px; font-weight: 690; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.ringText span { font-size: 9px; color: var(--muted); margin-top: 4px; }
+.breakdown { margin: 0; padding: 0; min-width: 0; list-style: none; }
+.serviceLine { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; align-items: center; min-height: 31px; font-size: 11px; }
+.serviceLine + .serviceLine { border-top: 1px solid var(--subtle-line); }
+.serviceName { min-width: 0; font-size: 11px; color: var(--ink); }
+.serviceCharge { font-weight: 650; text-align: right; font-variant-numeric: tabular-nums; }
+.servicePercent { color: var(--muted); min-width: 38px; text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 1250px) and (min-width: 1101px) {
+  .donutBody { gap: 8px; padding-inline: 12px; }
+  .serviceLine { gap: 6px; }
+}
+@media (max-width: 520px) {
+  .donutBody { gap: 10px; padding-inline: 13px; min-height: 190px; }
+  .ring { width: 108px; height: 108px; }
+  .ring > :first-child { transform: scale(.9); transform-origin: top left; }
+  .serviceLine { gap: 5px; }
+  .servicePercent { min-width: 31px; }
+}
+@media (max-width: 370px) { .donutBody { grid-template-columns: minmax(0, 1fr); justify-items: center; } .donutBody .breakdown { width: 100%; } }
