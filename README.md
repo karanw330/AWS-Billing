@@ -2,6 +2,8 @@
 
 An event-driven, multi-tenant cloud usage metering and billing project inspired by AWS-style usage processing. The goal is to build a **reliable, testable billing backend**, with correctness and recoverability taking priority over infrastructure breadth.
 
+> **Status:** Active development. Current work is focused on completing Kafka reliability, followed by MySQL persistence and transactional idempotency. Testing and metrics come before the dashboard or containerization.
+
 ## Tech Stack
 
 | Component | Technology | Status |
@@ -119,5 +121,3 @@ The database transaction will ensure that **recording a processed event and appl
 2. **Recoverability:** predictable behavior under retries, malformed messages, and restarts.
 3. **Evidence over claims:** tests and reproducible measurements before performance assertions.
 4. **Controlled scope:** introduce additional infrastructure only when requirements or benchmarks justify it.
-
-> **Status:** Active development. Current work is focused on completing Kafka reliability, followed by MySQL persistence and transactional idempotency. Testing and metrics come before the dashboard or containerization.
